@@ -1,6 +1,6 @@
 # todoist2taskpaper
 Retrieve projects &amp; tasks from [Todoist](https://todoist.com) in [TaskPaper](https://guide.taskpaper.com/getting-started/) format.
-Written to smooth a migration from Todoist to [Omnifocus](https://www.omnigroup.com/omnifocus), which can use TaskPaper as an intermediate format
+Written to smooth a migration from Todoist to [Omnifocus](https://www.omnigroup.com/omnifocus), which can [use TaskPaper as an intermediate format](https://support.omnigroup.com/omnifocus-taskpaper-reference/).
 
 ## Getting started
 
