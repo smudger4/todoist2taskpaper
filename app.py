@@ -47,16 +47,22 @@ def main(debug_flag):
     
     tasks = get_tasks(api, project.id)
     for task in tasks:
+      # store labels
+      label_list = task.labels
       # taskpaper format task - incorporate due date if set
       if task.due != None:
         if task.due.is_recurring == True:
-          # just set a tag & print out the Todoist recurrance rule rather than trying to convert it
-          print("- %s @parallel(true) @autodone(false) @due(%s) @tags(repeat-rule-needs-attention)" % (task.content, task.due.date))
+        # just set a tag & print out the Todoist recurrence rule rather than trying to convert it
+          label_list.append('repeat-rule-needs-attention')
+          tag_list = ','.join(label_list) # convert list of label strings to a comma-separated string of tags 
+          print("- %s @parallel(true) @autodone(false) @due(%s) @tags(%s)" % (task.content, task.due.date, tag_list))
           print("repeat-rule %s" % task.due.string)
         else:
-          print("- %s @parallel(true) @autodone(false) @due(%s)" % (task.content, task.due.date))
+          tag_list = ','.join(label_list) # convert list of label strings to a comma-separated string of tags         
+          print("- %s @parallel(true) @autodone(false) @due(%s) @tags(%s)" % (task.content, task.due.date, tag_list))
       else:
-        print("- %s @parallel(true) @autodone(false)" % (task.content))
+        tag_list = ','.join(label_list) # convert list of label strings to a comma-separated string of tags          
+        print("- %s @parallel(true) @autodone(false) @tags(%s)" % (task.content, tag_list))
       
       print(task.description)
       print("Migrated from Todoist: %s" % task.url) # link to original task in Todoist
